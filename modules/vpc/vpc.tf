@@ -147,7 +147,7 @@ resource "aws_route_table" "private_rt" {
 # ------------------------------------------------------------
 
 resource "aws_route_table_association" "private_rt_assoc" {
-  for_each = aws_subnet.private
+  for_each = merge(aws_subnet.private, aws_subnet.data)
 
   subnet_id      = each.value.id
   route_table_id = aws_route_table.private_rt.id
@@ -199,34 +199,4 @@ resource "aws_route" "private_route" {
   route_table_id         = aws_route_table.private_rt.id
   destination_cidr_block = "0.0.0.0/0"
   nat_gateway_id         = aws_nat_gateway.nat_gw.id
-}
-
-
-
-
-# ============================================================
-# DATA ROUTE TABLE
-# ============================================================
-
-
-
-resource "aws_route_table" "data_rt" {
-  vpc_id = aws_vpc.this.id
-
-  tags = {
-    Name        = "${var.environment}-${var.vpc_name}-data-rt"
-    Environment = var.environment
-  }
-}
-
-
-# ------------------------------------------------------------
-# Data Subnets → Data Route Table
-# ------------------------------------------------------------
-
-resource "aws_route_table_association" "data_rt_assoc" {
-  for_each = aws_subnet.data
-
-  subnet_id      = each.value.id
-  route_table_id = aws_route_table.data_rt.id
 }
