@@ -24,21 +24,21 @@ variable "tags" {
 # NETWORK
 # ============================================================
 
-variable "vpc_id" {
+variable "aws_vpc_id" {
   description = "VPC ID"
 
   type = string
 }
 
 
-variable "public_subnet_ids" {
+variable "aws_public_subnet_ids" {
   description = "Public subnet IDs used by the ALB"
 
   type = list(string)
 }
 
 
-variable "private_subnet_ids" {
+variable "aws_private_subnet_ids" {
   description = "Private subnet IDs used by ECS tasks"
 
   type = list(string)
