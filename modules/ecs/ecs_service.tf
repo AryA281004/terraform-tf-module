@@ -167,18 +167,15 @@ resource "aws_ecs_service" "this" {
   # NETWORK CONFIGURATION
   # ----------------------------------------------------------
 
-  network_configuration {
+network_configuration {
+  subnets = var.aws_private_subnet_ids
 
-    subnets = [
-      for subnet in aws_subnet.private : subnet.id
-    ]
+  security_groups = [
+    aws_security_group.container-sg.id
+  ]
 
-    security_groups = [
-      aws_security_group.container-sg.id
-    ]
-
-    assign_public_ip = false
-  }
+  assign_public_ip = false
+}
 
   # ----------------------------------------------------------
   # APPLICATION LOAD BALANCER
