@@ -68,5 +68,7 @@ output "aws_private_route_table_association_ids" {
   value       = [for assoc in aws_route_table_association.private_rt_assoc : assoc.id]
 }
 
-
-
+output "security_group_ids" {
+  description = "Map of security group name (alb-sg, container-sg, rds-sg) to its ID"
+  value       = { for key, sg in aws_security_group.all-sg : key => sg.id }
+}

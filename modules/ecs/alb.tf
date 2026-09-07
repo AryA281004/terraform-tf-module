@@ -6,12 +6,10 @@ resource "aws_lb" "this" {
   load_balancer_type = "application"
 
   security_groups = [
-    aws_security_group.alb-sg.id
+    var.alb_security_group_id
   ]
 
-  subnets = [
-    for subnet in aws_subnet.public : subnet.id
-  ]
+  subnets = var.aws_public_subnet_ids
 
   enable_deletion_protection = var.enable_deletion_protection
 

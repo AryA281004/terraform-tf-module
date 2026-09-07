@@ -171,7 +171,7 @@ network_configuration {
   subnets = var.aws_private_subnet_ids
 
   security_groups = [
-    aws_security_group.container-sg.id
+    var.container_security_group_id
   ]
 
   assign_public_ip = false
@@ -195,8 +195,8 @@ network_configuration {
   # ----------------------------------------------------------
 
   depends_on = [
-    aws_lb_listener.http_listener,
-    aws_lb_listener.https_listener,
+    aws_lb_listener.http,
+    aws_lb_listener.https,
     aws_iam_role_policy_attachment.ecs_execution
   ]
 

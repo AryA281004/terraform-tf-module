@@ -79,7 +79,7 @@ output "alb_zone_id" {
 output "target_group_arn" {
   description = "ECS target group ARN"
 
-  value = aws_lb_target_group.ecs.arn
+  value = aws_lb_target_group.this.arn
 }
 
 
@@ -90,14 +90,14 @@ output "target_group_arn" {
 output "alb_security_group_id" {
   description = "ALB security group ID"
 
-  value = aws_security_group.alb.id
+  value = var.alb_security_group_id
 }
 
 
 output "ecs_security_group_id" {
   description = "ECS task security group ID"
 
-  value = aws_security_group.ecs_tasks.id
+  value = var.container_security_group_id
 }
 
 

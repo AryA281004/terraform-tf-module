@@ -45,6 +45,20 @@ variable "aws_private_subnet_ids" {
 }
 
 
+variable "alb_security_group_id" {
+  description = "Security group ID to attach to the ALB"
+
+  type = string
+}
+
+
+variable "container_security_group_id" {
+  description = "Security group ID to attach to the ECS containers"
+
+  type = string
+}
+
+
 # ============================================================
 # ECS CLUSTER
 # ============================================================

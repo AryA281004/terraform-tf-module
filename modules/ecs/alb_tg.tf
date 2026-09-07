@@ -7,11 +7,11 @@ resource "aws_lb_target_group" "this" {
     target_type      = "ip"
     ip_address_type  = "ipv4"
 
-    vpc_id            = aws_vpc.this.id
+    vpc_id            = var.aws_vpc_id
     protocol_version  = "HTTP1"
 
     health_check {
-        path                = "/login"
+        path                = var.container_health_check_path
         protocol            = "HTTP"
         matcher             = "200-399"
         interval            = 30
@@ -27,27 +27,4 @@ resource "aws_lb_target_group" "this" {
         Environment = var.environment
     }
    
-}
-
-resource "aws_lb_listener" "this" {
-    load_balancer_arn = aws_lb.this.arn
-    port              = 80
-    protocol          = "HTTP"
-
-    default_action {
-    type = "forward"
-
-    forward {
-      target_group {
-        arn = aws_lb_target_group.this.arn
-      }
-    }
-  }
-
-  tags = {
-      Name        = "${var.environment}-${var.alb_name}-http-listener"
-      Environment = var.environment
-      ManagedBy   = "Terraform"
-    }
-  
 }
