@@ -39,7 +39,7 @@ output "aws_data_subnet_cidrs" {
 
 output "aws_internet_gateway_id" {
   description = "The ID of the Internet Gateway"
-  value       = aws_internet_gateway.this.id
+  value       = aws_internet_gateway.public_igw.id
 }
 output "aws_public_route_table_id" {
   description = "The ID of the public route table"
