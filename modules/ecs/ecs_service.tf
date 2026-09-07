@@ -139,7 +139,7 @@ resource "aws_ecs_service" "this" {
 
   propagate_tags = "SERVICE"
 
-  availability_zone_rebalancing = "enabled"
+    availability_zone_rebalancing = "ENABLED"
 
   # ----------------------------------------------------------
   # LOAD BALANCER HEALTH
