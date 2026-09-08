@@ -23,9 +23,10 @@ output "db_instance_identifier" {
 # DATABASE CONNECTION
 # ============================================================
 
-output "db_endpoint" {
-  description = "RDS database endpoint"
-  value       = aws_db_instance.this.address
+output "db_link_secret_arn" {
+  description = "ARN of the database connection secret"
+  value       = aws_secretsmanager_secret.db_link.arn
+  sensitive   = true
 }
 
 output "db_port" {
