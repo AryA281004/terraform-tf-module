@@ -181,7 +181,6 @@ variable "container_environment_variables" {
   type = map(string)
 
   default = {
-    db_link =""
   }
 }
 

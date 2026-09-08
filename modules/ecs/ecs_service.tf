@@ -73,9 +73,9 @@ resource "aws_ecs_task_definition" "this" {
       ]
 
       environment = [
-        for key, value in var.container_environment_variables : {
-          name  = key
-          value = value
+        {
+          name  = "db_link"
+          value = module.rds.db_link_secret_arn
         }
       ]
 
