@@ -258,6 +258,16 @@ variable "container_secrets" {
   default = []
 }
 
+# ============================================================
+# DATABASE
+# ============================================================
+
+variable "db_link_secret_arn" {
+  description = "ARN of the RDS database connection secret"
+  type        = string
+  sensitive   = true
+}
+
 
 # ============================================================
 # ALB
