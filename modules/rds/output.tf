@@ -25,7 +25,7 @@ output "db_instance_identifier" {
 
 output "db_link_secret_arn" {
   description = "ARN of the database connection secret"
-  value       = aws_secretsmanager_secret.db_link.arn
+  value       = try(aws_secretsmanager_secret.db_link[0].arn, null)
   sensitive   = true
 }
 
