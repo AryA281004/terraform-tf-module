@@ -3,7 +3,7 @@ variable "zone_id" {
   type        = string
 
   validation {
-    condition     = can(regex("^Z[A-Z0-9]+$", var.hosted_zone_id))
+    condition     = can(regex("^Z[A-Z0-9]+$", var.zone_id))
     error_message = "hosted_zone_id must be a valid Route 53 hosted zone ID beginning with Z."
   }
 }
