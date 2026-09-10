@@ -221,6 +221,15 @@ variable "container_port" {
 }
 
 
+variable "container_image" {
+  description = "Docker image URI for the container"
+
+  type = string
+
+  default = ""
+}
+
+
 variable "container_health_check_path" {
   description = "Application health check path"
 

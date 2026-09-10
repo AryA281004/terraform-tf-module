@@ -56,7 +56,7 @@ resource "aws_ecs_task_definition" "this" {
   container_definitions = jsonencode([
     {
       name      = local.container_name
-      image     = "${data.aws_caller_identity.current.account_id}.dkr.ecr.${data.aws_region.current.region}.amazonaws.com/attendance-app:latest"
+      image     = var.container_image != "" ? var.container_image : "${data.aws_caller_identity.current.account_id}.dkr.ecr.${data.aws_region.current.region}.amazonaws.com/attendance-app:latest"
       essential = true
 
       cpu    = var.container_cpu
@@ -69,6 +69,13 @@ resource "aws_ecs_task_definition" "this" {
           hostPort      = var.container_port
           protocol      = "tcp"
           appProtocol   = "http"
+        }
+      ]
+
+      environment = [
+        for key, value in var.container_environment_variables : {
+          name  = key
+          value = value
         }
       ]
 
