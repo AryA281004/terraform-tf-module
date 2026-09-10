@@ -173,8 +173,8 @@ variable "nat_gateway_subnet_key" {
 
       ingress = [
         {
-          from_port   = 3306
-          to_port     = 3306
+          from_port   = 5432
+          to_port     = 5432
           protocol    = "tcp"
           cidr_blocks = ["0.0.0.0/0"]
         }

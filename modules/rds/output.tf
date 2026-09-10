@@ -23,9 +23,9 @@ output "db_instance_identifier" {
 # DATABASE CONNECTION
 # ============================================================
 
-output "db_link_secret_arn" {
-  description = "ARN of the database connection secret"
-  value       = try(aws_secretsmanager_secret.db_link[0].arn, null)
+output "db_link_secret_endpoint" {
+  description = "Endpoint of the database connection secret"
+  value       = aws_db_instance.this.endpoint
   sensitive   = true
 }
 
