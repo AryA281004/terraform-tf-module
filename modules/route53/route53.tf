@@ -7,7 +7,7 @@ resource "aws_route53_record" "this" {
   ttl     = each.value.alias == null ? each.value.ttl : null
   records = each.value.alias == null ? each.value.records : null
 
-  set_identifier = each.value.set_identifier
+  set_identifier  = each.value.set_identifier
   allow_overwrite = var.allow_overwrite
 
   dynamic "alias" {

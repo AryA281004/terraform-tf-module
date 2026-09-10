@@ -23,7 +23,7 @@ variable "records" {
     }))
   }))
 
-  
+
 
   default = {}
 
@@ -31,21 +31,21 @@ variable "records" {
     condition = alltrue([
       for record in values(var.records) :
       contains([
-        "A", 
-        "AAAA", 
-        "CAA", 
-        "CNAME", 
-        "DS", 
+        "A",
+        "AAAA",
+        "CAA",
+        "CNAME",
+        "DS",
         "HTTPS",
-        "MX", 
-        "NAPTR", 
-        "NS", 
-        "PTR", 
-        "SOA", 
+        "MX",
+        "NAPTR",
+        "NS",
+        "PTR",
+        "SOA",
         "SRV",
-        "SSHFP", 
-        "SVCB", 
-        "TLSA", 
+        "SSHFP",
+        "SVCB",
+        "TLSA",
         "TXT"
       ], upper(record.type))
     ])
@@ -56,7 +56,7 @@ variable "records" {
     condition = alltrue([
       for record in values(var.records) : record.alias == null ? (
         record.ttl != null && record.ttl > 0 && length(record.records) > 0
-      ) : (
+        ) : (
         contains(["A", "AAAA"], upper(record.type)) &&
         record.ttl == null &&
         length(record.records) == 0 &&

@@ -101,6 +101,16 @@ output "engine_version" {
   value       = aws_db_instance.this.engine_version
 }
 
+# ============================================================
+# DATABASE LINK SECRET ARN
+# ============================================================
+
+output "db_link_secret_arn" {
+  description = "ARN of the Secrets Manager secret containing the database connection URL"
+  value       = try(aws_secretsmanager_secret.db_link[0].arn, null)
+  sensitive   = true
+}
+
 output "instance_class" {
   description = "RDS instance class"
   value       = aws_db_instance.this.instance_class

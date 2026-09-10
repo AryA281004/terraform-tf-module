@@ -248,7 +248,7 @@ variable "environment_variables" {
 
 
 variable "container_secrets" {
-  description = "Secrets passed to the container"
+  description = "Secrets injected into the ECS container"
 
   type = list(object({
     name       = string
@@ -256,17 +256,6 @@ variable "container_secrets" {
   }))
 
   default = []
-}
-
-# ============================================================
-# DATABASE
-# ============================================================
-
-variable "db_link_secret_link" {
-  description = "Link to the RDS database connection secret"
-  type        = string
-  sensitive   = true
-  default     = ""
 }
 
 

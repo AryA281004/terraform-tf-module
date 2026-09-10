@@ -55,9 +55,9 @@ output "aws_private_route_table_id" {
   description = "The ID of the private route table"
   value       = aws_route_table.private_rt.id
 }
-output "aws_eip"{
-    description = "The Elastic IP address"
-    value       = aws_eip.nat_eip.public_ip
+output "aws_eip" {
+  description = "The Elastic IP address"
+  value       = aws_eip.nat_eip.public_ip
 }
 output "aws_nat_gateway_id" {
   description = "The ID of the NAT Gateway"

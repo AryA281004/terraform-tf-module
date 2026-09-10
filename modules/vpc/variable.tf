@@ -12,11 +12,11 @@ variable "vpc_cidr" {
 
 variable "public_subnet_cidr" {
   description = "A map of public subnet CIDR blocks and their availability zones"
-  type        = map(object({
+  type = map(object({
     cidr_block = string
     az         = string
   }))
-  default     = {
+  default = {
     public_subnet_1a = {
       cidr_block = "10.1.0.0/24"
       az         = "us-east-1a"
@@ -30,16 +30,16 @@ variable "public_subnet_cidr" {
       az         = "us-east-1c"
     }
 
-    }
+  }
 }
 
 variable "private_subnet_cidr" {
   description = "A map of private subnet CIDR blocks and their availability zones"
-  type        = map(object({
+  type = map(object({
     cidr_block = string
     az         = string
   }))
-  default     = {
+  default = {
     private_subnet_1a = {
       cidr_block = "10.4.0.0/24"
       az         = "us-east-1a"
@@ -53,16 +53,16 @@ variable "private_subnet_cidr" {
       az         = "us-east-1c"
     }
 
-    }
+  }
 }
 
 variable "data_subnet_cidr" {
   description = "A map of data subnet CIDR blocks and their availability zones"
-  type        = map(object({
+  type = map(object({
     cidr_block = string
     az         = string
   }))
-  default     = {
+  default = {
     data_subnet_1a = {
       cidr_block = "10.7.0.0/24"
       az         = "us-east-1a"
@@ -76,7 +76,7 @@ variable "data_subnet_cidr" {
       az         = "us-east-1c"
     }
 
-    }
+  }
 }
 
 variable "environment" {
@@ -85,18 +85,18 @@ variable "environment" {
   default     = "dev"
 }
 
-variable "nat_gateway_subnet_key" { 
-    description = "Key of the public subnet where the NAT Gateway will be created" 
-    type = string 
-    validation { 
-        condition = contains(keys(var.public_subnet_cidr), var.nat_gateway_subnet_key) 
-        error_message = "nat_gateway_subnet_key must match a key in public_subnet_cidr." 
-        } 
-    }
+variable "nat_gateway_subnet_key" {
+  description = "Key of the public subnet where the NAT Gateway will be created"
+  type        = string
+  validation {
+    condition     = contains(keys(var.public_subnet_cidr), var.nat_gateway_subnet_key)
+    error_message = "nat_gateway_subnet_key must match a key in public_subnet_cidr."
+  }
+}
 
 
 
-    variable "security_all_group" {
+variable "security_all_group" {
   description = "Security groups to create inside the VPC"
 
   type = map(object({

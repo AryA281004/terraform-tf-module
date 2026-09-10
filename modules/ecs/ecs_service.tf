@@ -59,7 +59,7 @@ resource "aws_ecs_task_definition" "this" {
       image     = "${data.aws_caller_identity.current.account_id}.dkr.ecr.${data.aws_region.current.region}.amazonaws.com/attendance-app:latest"
       essential = true
 
-      cpu    = var.container_cpu       
+      cpu    = var.container_cpu
       memory = var.container_memory
 
       portMappings = [
@@ -72,10 +72,10 @@ resource "aws_ecs_task_definition" "this" {
         }
       ]
 
-      environment = [
-        {
-          name  = "db_link"
-          value = var.db_link_secret_link
+      secrets = [
+        for secret in var.container_secrets : {
+          name      = secret.name
+          valueFrom = secret.value_from
         }
       ]
 
@@ -139,7 +139,7 @@ resource "aws_ecs_service" "this" {
 
   propagate_tags = "SERVICE"
 
-    availability_zone_rebalancing = "ENABLED"
+  availability_zone_rebalancing = "ENABLED"
 
   # ----------------------------------------------------------
   # LOAD BALANCER HEALTH
@@ -167,15 +167,15 @@ resource "aws_ecs_service" "this" {
   # NETWORK CONFIGURATION
   # ----------------------------------------------------------
 
-network_configuration {
-  subnets = var.aws_private_subnet_ids
+  network_configuration {
+    subnets = var.aws_private_subnet_ids
 
-  security_groups = [
-    var.container_security_group_id
-  ]
+    security_groups = [
+      var.container_security_group_id
+    ]
 
-  assign_public_ip = false
-}
+    assign_public_ip = false
+  }
 
   # ----------------------------------------------------------
   # APPLICATION LOAD BALANCER
