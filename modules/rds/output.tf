@@ -5,17 +5,17 @@
 
 output "db_instance_id" {
   description = "RDS instance ID"
-  value       = aws_db_instance.this.id
+  value       = try(aws_db_instance.this[0].id, aws_db_instance.managed_password[0].id)
 }
 
 output "db_instance_arn" {
   description = "RDS instance ARN"
-  value       = aws_db_instance.this.arn
+  value       = try(aws_db_instance.this[0].arn, aws_db_instance.managed_password[0].arn)
 }
 
 output "db_instance_identifier" {
   description = "RDS instance identifier"
-  value       = aws_db_instance.this.identifier
+  value       = try(aws_db_instance.this[0].identifier, aws_db_instance.managed_password[0].identifier)
 }
 
 
@@ -25,28 +25,28 @@ output "db_instance_identifier" {
 
 output "db_link_secret_endpoint" {
   description = "Endpoint of the database connection secret"
-  value       = aws_db_instance.this.endpoint
+  value       = try(aws_db_instance.this[0].endpoint, aws_db_instance.managed_password[0].endpoint)
   sensitive   = true
 }
 
 output "db_port" {
   description = "RDS database port"
-  value       = aws_db_instance.this.port
+  value       = try(aws_db_instance.this[0].port, aws_db_instance.managed_password[0].port)
 }
 
 output "db_host" {
   description = "RDS database hostname"
-  value       = aws_db_instance.this.address
+  value       = try(aws_db_instance.this[0].address, aws_db_instance.managed_password[0].address)
 }
 
 output "db_name" {
   description = "Database name"
-  value       = aws_db_instance.this.db_name
+  value       = try(aws_db_instance.this[0].db_name, aws_db_instance.managed_password[0].db_name)
 }
 
 output "db_username" {
   description = "Database master username"
-  value       = aws_db_instance.this.username
+  value       = try(aws_db_instance.this[0].username, aws_db_instance.managed_password[0].username)
   sensitive   = true
 }
 
@@ -72,7 +72,7 @@ output "db_security_group_id" {
 
 output "master_user_secret_arn" {
   description = "ARN of the Secrets Manager secret containing the RDS master credentials"
-  value       = try(aws_db_instance.this.master_user_secret[0].secret_arn, null)
+  value       = try(aws_db_instance.managed_password[0].master_user_secret[0].secret_arn, null)
   sensitive   = true
 }
 
@@ -93,12 +93,12 @@ output "parameter_group_name" {
 
 output "engine" {
   description = "RDS database engine"
-  value       = aws_db_instance.this.engine
+  value       = try(aws_db_instance.this[0].engine, aws_db_instance.managed_password[0].engine)
 }
 
 output "engine_version" {
   description = "RDS database engine version"
-  value       = aws_db_instance.this.engine_version
+  value       = try(aws_db_instance.this[0].engine_version, aws_db_instance.managed_password[0].engine_version)
 }
 
 # ============================================================
@@ -113,10 +113,10 @@ output "db_link_secret_arn" {
 
 output "instance_class" {
   description = "RDS instance class"
-  value       = aws_db_instance.this.instance_class
+  value       = try(aws_db_instance.this[0].instance_class, aws_db_instance.managed_password[0].instance_class)
 }
 
 output "multi_az" {
   description = "Whether Multi-AZ is enabled"
-  value       = aws_db_instance.this.multi_az
+  value       = try(aws_db_instance.this[0].multi_az, aws_db_instance.managed_password[0].multi_az)
 }
