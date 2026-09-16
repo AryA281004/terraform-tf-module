@@ -12,7 +12,7 @@ variable "environment" {
 variable "db_identifier" {
   description = "RDS instance identifier"
   type        = string
-  default     = "attendanceapp"
+ 
 }
 
 
@@ -23,14 +23,14 @@ variable "db_identifier" {
 variable "engine" {
   description = "RDS database engine"
   type        = string
-  default     = "postgres"
+  
 }
 
 
 variable "engine_version" {
   description = "RDS engine version"
   type        = string
-  default     = "18.3-R2"
+  
 }
 
 
@@ -47,20 +47,20 @@ variable "parameter_group_family" {
 variable "db_name" {
   description = "Initial database name"
   type        = string
-  default     = "mydb"
+  
 }
 
 
 variable "db_username" {
   description = "Master username"
   type        = string
-  default     = "postgres"
+  
 }
 
 variable "manage_master_user_password" {
   description = "Let RDS generate and store the master password in Secrets Manager"
   type        = bool
-  default     = true
+  
 }
 
 variable "db_password" {
@@ -108,7 +108,7 @@ variable "max_allocated_storage" {
 variable "storage_type" {
   description = "RDS storage type"
   type        = string
-  default     = "gp3"
+ 
 }
 
 
@@ -135,7 +135,7 @@ variable "db_security_group_id" {
 variable "multi_az" {
   description = "Enable Multi-AZ deployment"
   type        = bool
-  default     = true
+  
 }
 
 
@@ -161,7 +161,7 @@ variable "enabled_cloudwatch_logs_exports" {
 variable "performance_insights_enabled" {
   description = "Enable Performance Insights"
   type        = bool
-  default     = true
+  
 }
 
 
@@ -172,7 +172,7 @@ variable "performance_insights_enabled" {
 variable "monitoring_interval" {
   description = "Enhanced monitoring interval in seconds. 0 disables it."
   type        = number
-  default     = 60
+ 
 
   validation {
     condition = contains(

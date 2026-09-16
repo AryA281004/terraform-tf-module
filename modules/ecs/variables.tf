@@ -68,7 +68,6 @@ variable "ecs_cluster_name" {
 
   type = string
 
-  default = "flask-production-cluster"
 }
 
 variable "container_insights_mode" {
@@ -89,7 +88,7 @@ variable "ecs_service_name" {
 
   type = string
 
-  default = "flask-production-service"
+  
 }
 
 
@@ -98,7 +97,7 @@ variable "desired_count" {
 
   type = number
 
-  default = 2
+  
 }
 
 
@@ -107,7 +106,7 @@ variable "health_check_grace_period" {
 
   type = number
 
-  default = 60
+ 
 }
 
 
@@ -116,7 +115,6 @@ variable "deployment_minimum_healthy_percent" {
 
   type = number
 
-  default = 100
 }
 
 
@@ -125,7 +123,7 @@ variable "deployment_maximum_percent" {
 
   type = number
 
-  default = 200
+ 
 }
 
 
@@ -147,7 +145,6 @@ variable "ecs_task_name" {
 
   type = string
 
-  default = "flask-production-task"
 }
 
 
@@ -156,7 +153,7 @@ variable "container_name" {
 
   type = string
 
-  default = "flask-app"
+ 
 }
 
 variable "requires_compatibilities" {
@@ -172,7 +169,7 @@ variable "task_cpu" {
 
   type = number
 
-  default = 512
+
 }
 
 variable "container_environment_variables" {
@@ -190,7 +187,7 @@ variable "task_memory" {
 
   type = number
 
-  default = 1024
+ 
 }
 
 
@@ -199,7 +196,7 @@ variable "container_cpu" {
 
   type = number
 
-  default = 512
+ 
 }
 
 
@@ -208,7 +205,7 @@ variable "container_memory" {
 
   type = number
 
-  default = 1024
+  
 }
 
 
@@ -217,7 +214,7 @@ variable "container_port" {
 
   type = number
 
-  default = 8000
+
 }
 
 
@@ -226,7 +223,6 @@ variable "container_image" {
 
   type = string
 
-  default = ""
 }
 
 
@@ -235,7 +231,7 @@ variable "container_health_check_path" {
 
   type = string
 
-  default = "/"
+ 
 }
 
 variable "health_check_grace_period_seconds" {
@@ -243,7 +239,6 @@ variable "health_check_grace_period_seconds" {
 
   type = number
 
-  default = 30
 }
 
 
@@ -277,7 +272,6 @@ variable "alb_name" {
 
   type = string
 
-  default = "flask-production-alb"
 }
 
 
@@ -286,7 +280,6 @@ variable "target_group_name" {
 
   type = string
 
-  default = "flask-production-tg"
 }
 
 
@@ -325,7 +318,7 @@ variable "log_retention_in_days" {
 
   type = number
 
-  default = 30
+ 
 }
 
 
@@ -338,7 +331,7 @@ variable "autoscaling_min_capacity" {
 
   type = number
 
-  default = 2
+  
 }
 
 
@@ -347,7 +340,7 @@ variable "autoscaling_max_capacity" {
 
   type = number
 
-  default = 6
+  
 }
 
 
@@ -356,7 +349,7 @@ variable "cpu_target_percentage" {
 
   type = number
 
-  default = 70
+  
 }
 
 
@@ -365,7 +358,7 @@ variable "memory_target_percentage" {
 
   type = number
 
-  default = 75
+ 
 }
 
 # ============================================================
@@ -377,7 +370,7 @@ variable "ecs_execution_role_name" {
 
   type = string
 
-  default = "attaendance-execution-role"
+  
 }
 
 variable "ecs_task_role_name" {
@@ -385,5 +378,5 @@ variable "ecs_task_role_name" {
 
   type = string
 
-  default = "attendance-task-role"
+  
 }
